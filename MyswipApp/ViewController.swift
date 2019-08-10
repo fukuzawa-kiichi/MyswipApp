@@ -51,12 +51,18 @@ class ViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        selectedCardCount = 0
+        likeName = []
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "ToLikedList" {
             let vc = segue.destination as! LikedTableViewController
             
             vc.likedName = likeName
+            /*
             // 戻ってきたとき元の画面にしておく処理
             for num in 0...selectedCardCount - 1 {
                 personList[num].center = centerOfCard
@@ -66,6 +72,22 @@ class ViewController: UIViewController {
             }
             selectedCardCount = 0
             likeName = []
+             */
+        }
+    }
+    
+    // 画面遷移後にスクリーンをリセットする関数
+    override func viewDidDisappear(_ animated: Bool) {
+        // ユーザーカードをもとに戻す
+        resetPersonList()
+    }
+    
+    
+    func resetPersonList(){
+        // 5人の飛んだビューをもとに戻す
+        for person in personList {
+            person.center = self.centerOfCard
+            person.transform = .identity
         }
     }
     
