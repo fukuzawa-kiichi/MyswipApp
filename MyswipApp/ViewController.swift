@@ -175,7 +175,7 @@ class ViewController: UIViewController {
         
     }
     
-    
+    // ハートボタンの処理
     @IBAction func likeButton(_ sender: Any) {
         
         UIView.animate(withDuration: 0.5, animations: {
@@ -185,6 +185,7 @@ class ViewController: UIViewController {
             self.personList[self.selectedCardCount].center = CGPoint(x:self.personList[self.selectedCardCount].center.x + 500, y:self.personList[self.selectedCardCount].center.y)
             
         })
+        // いいねした名前を配列
      likeName.append(nameList[selectedCardCount])
         selectedCardCount += 1
         
@@ -194,7 +195,7 @@ class ViewController: UIViewController {
         }
     }
     
-    
+    // バツボタンの処理
     @IBAction func dislikeButton(_ sender: Any) {
         
         UIView.animate(withDuration: 0.5, animations: {
@@ -204,6 +205,7 @@ class ViewController: UIViewController {
             self.personList[self.selectedCardCount].center = CGPoint(x:self.personList[self.selectedCardCount].center.x - 500, y:self.personList[self.selectedCardCount].center.y)
             
         })
+        // 次のやつに
         selectedCardCount += 1
         
         if selectedCardCount >= personList.count {
