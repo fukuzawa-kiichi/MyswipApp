@@ -240,6 +240,9 @@
                                     <constraint firstAttribute="height" constant="70" id="sXn-rL-Qzb"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="バツ"/>
+                                <connections>
+                                    <action selector="dislikeButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x4K-5F-7Xt"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcM-4N-Yvw">
                                 <rect key="frame" x="304" y="752" width="70" height="70"/>
@@ -248,6 +251,9 @@
                                     <constraint firstAttribute="height" constant="70" id="ZaP-FZ-8Ph"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="ハート"/>
+                                <connections>
+                                    <action selector="likeButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a5w-0s-9Ih"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="759-6v-Qaa">
                                 <rect key="frame" x="0.0" y="88" width="414" height="624"/>

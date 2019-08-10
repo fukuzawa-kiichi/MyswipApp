@@ -175,5 +175,42 @@ class ViewController: UIViewController {
         
     }
     
+    
+    @IBAction func likeButton(_ sender: Any) {
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            // ベースカードをリセット
+            self.resetCard()
+            // ユーザーカードを右に飛ばす
+            self.personList[self.selectedCardCount].center = CGPoint(x:self.personList[self.selectedCardCount].center.x + 500, y:self.personList[self.selectedCardCount].center.y)
+            
+        })
+     likeName.append(nameList[selectedCardCount])
+        selectedCardCount += 1
+        
+        if selectedCardCount >= personList.count {
+            
+            performSegue(withIdentifier: "ToLikedList", sender: self)
+        }
+    }
+    
+    
+    @IBAction func dislikeButton(_ sender: Any) {
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            // ベースカードをリセット
+            self.resetCard()
+            // ユーザーカードを左に飛ばす
+            self.personList[self.selectedCardCount].center = CGPoint(x:self.personList[self.selectedCardCount].center.x - 500, y:self.personList[self.selectedCardCount].center.y)
+            
+        })
+        selectedCardCount += 1
+        
+        if selectedCardCount >= personList.count {
+            
+            performSegue(withIdentifier: "ToLikedList", sender: self)
+        }
+    }
+    
 }
 
