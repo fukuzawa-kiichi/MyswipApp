@@ -57,6 +57,15 @@ class ViewController: UIViewController {
             let vc = segue.destination as! LikedTableViewController
             
             vc.likedName = likeName
+            // 戻ってきたとき元の画面にしておく処理
+            for num in 0...selectedCardCount - 1 {
+                personList[num].center = centerOfCard
+
+                // ユーザーカードにも同じ処理
+                personList[num].transform = .identity
+            }
+            selectedCardCount = 0
+            likeName = []
         }
     }
     
@@ -126,6 +135,8 @@ class ViewController: UIViewController {
                 if selectedCardCount >= personList.count {
                     // 遷移処理
                     performSegue(withIdentifier: "ToLikedList", sender: self)
+                    
+                   
                 }
                 
             } else if card.center.x > self.view.frame.width - 50 {
@@ -141,7 +152,7 @@ class ViewController: UIViewController {
                 resetCard()
                 // good,bad表示を隠す
                 likeImage.isHidden = true
-                 // いいねの時だけカウントするv
+                // いいねの時だけカウントするv
                 likeName.append(nameList[selectedCardCount])
                 // カウントを1増やす
                 selectedCardCount += 1
@@ -149,30 +160,31 @@ class ViewController: UIViewController {
                 if selectedCardCount >= personList.count {
                     // 遷移処理
                     performSegue(withIdentifier: "ToLikedList", sender: self)
+                    
+                   
+                    
+                }else {
+                    // アニメーションアニメーションをつける
+                    UIView.animate(withDuration: 0.5, animations: {
+                        
+                        
+                        // ベースカードを元の位置に戻す
+                        // クロージャ内でviewControllerのプロパティにアクセスする場合は自身のviewControllerのインスタンスを指すselfを頭に付ける必要がある
+                        // ユーザーカードを元の位置に戻す
+                        self.personList[self.selectedCardCount].center = self.centerOfCard
+                        // ユーザーカードにも同じ処理
+                        self.personList[self.selectedCardCount].transform = .identity
+                        // ベースカードの位置と角度を戻す
+                        self.resetCard()
+                        // good,bad表示を隠す
+                        self.likeImage.isHidden = true
+                    }
+                    )
                 }
-               
                 
-            }else {
-                // アニメーションアニメーションをつける
-                UIView.animate(withDuration: 0.5, animations: {
-                    
-                    
-                    // ベースカードを元の位置に戻す
-                    // クロージャ内でviewControllerのプロパティにアクセスする場合は自身のviewControllerのインスタンスを指すselfを頭に付ける必要がある
-                    // ユーザーカードを元の位置に戻す
-                    self.personList[self.selectedCardCount].center = self.centerOfCard
-                    // ユーザーカードにも同じ処理
-                    self.personList[self.selectedCardCount].transform = .identity
-                    // ベースカードの位置と角度を戻す
-                    self.resetCard()
-                    // good,bad表示を隠す
-                    self.likeImage.isHidden = true
-                }
-                )
             }
             
         }
-        
     }
     
     // ハートボタンの処理
@@ -186,12 +198,13 @@ class ViewController: UIViewController {
             
         })
         // いいねした名前を配列
-     likeName.append(nameList[selectedCardCount])
+        likeName.append(nameList[selectedCardCount])
         selectedCardCount += 1
         
         if selectedCardCount >= personList.count {
             
             performSegue(withIdentifier: "ToLikedList", sender: self)
+            
         }
     }
     
@@ -211,8 +224,10 @@ class ViewController: UIViewController {
         if selectedCardCount >= personList.count {
             
             performSegue(withIdentifier: "ToLikedList", sender: self)
+            
         }
     }
     
 }
+
 
